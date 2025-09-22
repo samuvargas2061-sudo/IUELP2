@@ -1,0 +1,91 @@
+////////////////////PAGINA/////////////////////////////////////////////////////////////
+package poo;
+
+public class Pagina {
+    private String contenido;
+    private int numero;
+
+    public Pagina(String contenido, int numero) {
+        this.contenido = contenido;
+        this.numero = numero;
+    }
+
+    public String getContenido() {
+        return contenido;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+    
+    
+}
+/////////////////////////////////////LIBRO//////////////////////////////////////////////
+
+
+package poo;
+
+public class Libro {
+    private String titulo;
+    private long isbn;
+    private int añoPublicacion;
+    private String Autor;
+    
+    private Pagina[] paginas;
+    private int numeroPaginas;
+
+    public Libro(String titulo, long isbn, int añoPublicacion, String Autor) {
+        this.titulo = titulo;
+        this.isbn = isbn;
+        this.añoPublicacion = añoPublicacion;
+        this.Autor = Autor;
+    
+   
+    this.paginas = new Pagina [50];
+    for(int i = 0; i < 50; i++){
+    this.paginas[i] = new Pagina("", 0);
+}}
+
+    public int getNumeroPaginas() {
+        return numeroPaginas;
+    }
+    
+     public void añadirPagina(Pagina Pagina){
+         if(this.numeroPaginas < 50){
+             this.paginas[this.numeroPaginas]= Pagina;
+             this.numeroPaginas++;
+         }
+     }
+    
+     
+     public Pagina getPagina (int numeroPagina){
+         for (int i = 0; i < this.numeroPaginas; i++) {
+             if(this.paginas[i].getNumero() == numeroPagina)
+                 return this.paginas[i];  
+         }
+        return null;
+     }
+}
+
+
+///////////////////////////////////////////MAIN/////////////////////////////////////////////////
+
+package poo;
+public class EjemploLibroPagina {
+    
+    public static void main(String[] args) {
+        Libro l1 = new Libro ("Cien años de Soledad ", 123456789, 1967 , "Gabriel Garcia Marquez");
+        
+        Pagina p1 = new Pagina ("Muchos años despues, frente al peloton de fusilamiento, el coronel Aurelio Buen DIa...", 1);
+        
+        Pagina p2 = new Pagina("Lo envio a las autoridades acompañado de numerosos testimonios sobres...", 2);
+        
+        l1.añadirPagina(p1);
+        l1.añadirPagina(p2);
+        
+        for (int i = 1; i <= l1.getNumeroPaginas(); i++) {
+            System.out.println(l1.getPagina(i).getContenido());
+            
+        }
+    }
+}
