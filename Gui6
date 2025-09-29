@@ -1,0 +1,61 @@
+package poo;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+public class Gui6 extends JFrame{
+    JMenuBar barra;
+    JMenu archivo, edicion;
+    JMenuItem opcion1, opcion2, opcion3, submenu1, submenu2;
+    
+    public Gui6(){
+        FlowLayout F= new FlowLayout();
+        F.setAlignment(0);
+        setLayout(F);
+        
+        barra = new JMenuBar();
+        add(barra);
+        
+        archivo = new JMenu("Archivo");
+        barra.add(archivo);
+        
+        edicion= new JMenu("Edicion");
+        barra.add(edicion);
+        
+        opcion1 = new JMenuItem("Opcion 1");
+        archivo.add(opcion1);
+        opcion1.addActionListener(new menu1());
+        
+        
+        opcion2 = new JMenuItem("Opcion 2");
+        archivo.add(opcion2);
+        
+        archivo.add(new JSeparator());
+        opcion3 = new JMenu("Opcion 3");
+        archivo.add(opcion3);
+        
+        submenu1= new JMenuItem("Submenu 1 ");
+        opcion3.add(submenu1);
+        
+        submenu2 = new JMenuItem("Submenu 2");
+        opcion3.add(submenu2);
+        
+        setSize(1350,700);
+        setVisible(true);
+        setTitle("Sistema IUE");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+    
+    class menu1 implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e){
+            GUIPlaneta ventana2 = new  GUIPlaneta();
+        }
+    }
+
+    public static void main(String[] args) {
+        Gui6 ventana = new Gui6();
+    }
+    
+    
+}
