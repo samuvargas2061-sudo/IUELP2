@@ -1,0 +1,83 @@
+package poo;
+
+public class Planeta {
+    private String codigo;
+    private String nombre;
+    
+    
+        Planeta(String c, String n){
+            codigo=c;
+            nombre=n;
+        }
+
+    @Override
+    public String toString() {
+        return "Planeta{" + "codigo= " + codigo +
+                ", nombre= " + nombre + '}';
+    }
+        
+    
+}
+
+/////////////////////////////////////////////////////////////
+
+
+package poo;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import javax.swing.JFrame;
+
+public class GUIPlaneta extends JFrame {
+   JButton guardar, listarp;
+   JTextField codigo,nombre;
+   ArrayList<Planeta>p=new ArrayList<>();
+   
+   public GUIPlaneta(){
+   setLayout(new FlowLayout());
+   
+   add(new JLabel("Codigo: "));
+   codigo= new JTextField(18);
+   add(codigo);
+   
+   add(new JLabel("Nombre: "));
+   nombre=( new JTextField(18));
+   add(nombre);
+   
+   guardar = new JButton("Guardar: ");
+   add(guardar);
+   guardar.addActionListener(new boton1());
+   
+   listarp= new JButton("Listar Planetas");
+   add(listarp);
+   listarp.addActionListener(new boton2());
+   
+   
+   setSize(300,150);
+   setVisible(true);
+   setTitle("Registrar Planetas");
+   setDefaultCloseOperation(EXIT_ON_CLOSE);
+   
+}
+   class boton1 implements ActionListener{
+       @Override
+       public void actionPerformed(ActionEvent e){
+           p.add(new Planeta(codigo.getText(), nombre.getText()));
+           codigo.setText(null);
+           nombre.setText(null);
+           JOptionPane.showMessageDialog(null,"El planeta se almacenó satisfactoriamente");
+       }
+   }
+   
+   class boton2 implements ActionListener{
+       @Override
+       public void actionPerformed(ActionEvent e){
+           JOptionPane.showMessageDialog(null,"Los planetas registrados son: " + p.toString());
+       }
+   }
+    public static void main(String[] args) {
+        GUIPlaneta ventana = new GUIPlaneta();
+    }
+}
