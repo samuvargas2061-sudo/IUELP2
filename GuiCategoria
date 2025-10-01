@@ -1,0 +1,114 @@
+
+package poo;
+
+public class Categoria {
+    private String nombre;
+
+    public Categoria(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    @Override
+    public String toString() {
+        return  "\n\n Nombre= " + nombre;
+    }
+    
+    
+    
+}
+/////////////////////////////////////////////////////////
+
+package poo;
+
+import java.util.ArrayList;
+
+public class ControladorCategoria {
+    ArrayList<String>cat;
+    
+    ControladorCategoria(){
+        cat=new ArrayList<>();
+    }
+    
+    public void anadirCategoria(String nom){
+        cat.add(nom);
+    }
+
+    public ArrayList<String>getC(){
+        return cat;
+    }
+    
+    public int getCantidadCategorias(){
+        return cat.size();
+    }
+     
+}
+
+///////////////////////////////////////////////
+
+package poo;
+
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
+public class GuiProducto extends JFrame {
+    JComboBox categorias;
+    JButton agregarCategoria;
+    JTextField categoria;
+    
+    ControladorCategoria c = new ControladorCategoria();
+    
+    public GuiProducto(){
+        setLayout(new FlowLayout());
+        
+        add(new JLabel("Categoria: "));
+        categoria = new JTextField(10);
+        add(categoria);
+        
+        agregarCategoria= new JButton ("Agregar categoria");
+        add(agregarCategoria);
+        agregarCategoria.addActionListener(new accionBoton());
+       
+        add(new JLabel("Categoria: "));
+        categorias = new JComboBox();
+        add(categorias);
+        
+        setSize(330,130);
+        setVisible(true);
+        setTitle("Registrar Categoria");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+    
+    
+    class accionBoton implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e){
+            c.anadirCategoria(categoria.getText());
+            categorias.addItem(categoria.getText());
+            categoria.setText(null);
+            JOptionPane.showMessageDialog(null, "La categoria se almaceno satisfactoriamente");
+        }
+    }
+    
+    
+    public static void main(String[] args) {
+        GuiProducto ventana = new GuiProducto();
+    }
+    
+    
+}
+
