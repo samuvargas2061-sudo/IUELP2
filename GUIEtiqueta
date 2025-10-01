@@ -1,0 +1,62 @@
+
+package poo;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+public class GUIEtiqueta extends JFrame {
+    JLabel etiqueta;
+    JTextField caja;
+    JButton CambiarColor, Ocultar;
+    
+  public GUIEtiqueta(){
+      setLayout(new FlowLayout());
+      
+      etiqueta= new JLabel ("Etiqueta");
+      add(etiqueta);
+      
+      caja = new JTextField(18);
+      add(caja);
+      
+      CambiarColor = new JButton ("Cambiar color");
+      add(CambiarColor);
+      CambiarColor.addActionListener(new Boton());
+      
+      Ocultar = new JButton ("Ocultar");
+      add(Ocultar);
+      Ocultar.addActionListener(new Boton1());
+      
+      setSize (600,100);
+      setVisible(true);
+      setDefaultCloseOperation(EXIT_ON_CLOSE);
+  }  
+  
+     class Boton implements ActionListener{
+         public void actionPerfomed(ActionEvent e){
+             
+             etiqueta.setVisible(true);
+             caja.setVisible(true);
+             etiqueta.setText("Nueva Etiqueta");
+             etiqueta.setForeground(Color.MAGENTA);
+             
+             caja.setFocusable(true);
+             caja.setText("Texto color rojo");
+             caja.setForeground(Color.red);
+             caja.setBackground(Color.yellow);
+             Ocultar.setForeground(Color.green);
+             Ocultar.setBackground(Color.orange);
+             
+         }
+     }
+     
+     class Boton1 implements ActionListener{
+         
+         public void actionPerfomed (ActionEvent e){
+             etiqueta.setVisible(false);
+             caja.setVisible(false);
+         }
+     }
+     
+    public static void main(String[] args) {
+        GUIEtiqueta ventana = new GUIEtiqueta();
+    }
+}
