@@ -1,0 +1,44 @@
+import javax.swing.*;
+  import java.awt.*;
+  import java.awt.event.*;
+public class ComboBox extends JFrame{
+
+ JTextField nombre;
+ JComboBox ciudades;
+ 
+     public ComboBox(){
+     setLayout(new FlowLayout());
+     
+     add(new JLabel("Nombre"));
+     nombre = new JTextField(5);
+     add(nombre);
+     add(new JLabel("Ciudad"));
+     ciudades = new JComboBox();
+     ciudades.addItem("Bogota");
+     ciudades.addItem("Cartagena");
+     ciudades.addItem("Bucaramanga");
+     ciudades.addItem("Cali");
+     ciudades.addItem("Medellin");
+     add(ciudades);
+     ciudades.addActionListener(new OyenteBoton());
+     setTitle("Seleccion de Ciudad");
+     setSize(500,100);
+     setVisible(true);
+     setDefaultCloseOperation(EXIT_ON_CLOSE);
+ }
+     
+     
+     public static void main(String[] args) {
+        ComboBox ventana = new ComboBox();
+    }
+     
+      class OyenteBoton implements ActionListener{
+          
+          @Override
+          public void actionPerformed (ActionEvent e){
+          String ciudad = ciudades.getSelectedItem().toString();
+          JOptionPane.showMessageDialog(null, nombre.getText() + " Vive en " + ciudad);
+      }
+          
+      }
+}
